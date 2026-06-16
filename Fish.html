@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>欢迎来到小鱼宝宝和王涛的秘密海底世界</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            overflow: hidden;      /* 隐藏超出屏幕的元素 */
+            cursor: pointer;       /* 鼠标变成小手 */
+            position: relative;
+        }
+
+        /* 中央标题 */
+        h1 {
+            color: #fff;
+            font-size: 2.2rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 10;
+            animation: float 3s ease-in-out infinite;
+            text-align: center;
+            padding: 0 20px;
+            line-height: 1.5;
+        }
+
+        /* 小鱼游动 */
+        .fish {
+            position: absolute;
+            font-size: 4rem;
+            animation: swim 8s linear infinite;
+        }
+
+        /* 标题上下浮动 */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* 小鱼游动动画 */
+        @keyframes swim {
+            0% {
+                left: -10%;
+                transform: translateY(0) rotateY(0deg);
+            }
+
+            50% {
+                transform: translateY(-50px) rotateY(0deg);
+            }
+
+            100% {
+                left: 110%;
+                transform: translateY(0) rotateY(0deg);
+            }
+        }
+
+        /* 泡泡样式 */
+        .bubble {
+            position: absolute;
+            font-size: 2rem;
+            pointer-events: none;
+            animation: rise 2s ease-in forwards;
+        }
+
+        /* 泡泡上升动画 */
+        @keyframes rise {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-150px) scale(1.5);
+            }
+        }
+
+        /* 手机适配 */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .fish {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 游动的小鱼 -->
+    <div class="fish" style="top: 30%; animation-delay: 0s;">🐟</div>
+
+    <div class="fish" style="top: 60%; animation-delay: -3s;">🐠</div>
+
+    <!-- 中央标题 -->
+    <h1>
+        欢迎来到小鱼宝宝和王涛的秘密海底世界 🫧
+    </h1>
+
+    <script>
+        // 点击屏幕任意位置冒出泡泡
+        document.body.addEventListener('click', function (e) {
+
+            const bubble = document.createElement('div');
+
+            bubble.className = 'bubble';
+            bubble.innerText = '🫧';
+
+            bubble.style.left = e.clientX + 'px';
+            bubble.style.top = e.clientY + 'px';
+
+            document.body.appendChild(bubble);
+
+            // 动画结束后删除泡泡，防止页面卡顿
+            setTimeout(() => {
+                bubble.remove();
+            }, 2000);
+        });
+    </script>
+
+</body>
+</html>
+```
